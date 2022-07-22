@@ -7,7 +7,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
 @Entity
 @Table(name = "Customers")
 public class Customer {
@@ -33,7 +32,7 @@ public class Customer {
         this.id = id;
     }
 
-    public void setcustomerId(long customerId){
+    public void setCustomerId(long customerId){
         this.customerId = customerId;
     }
 

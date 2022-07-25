@@ -15,7 +15,7 @@ public class Transaction {
     private int amount;
     
     @ManyToOne
-    @JoinColumn(name = "accountId", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "accountId", referencedColumnName = "id")
     public Account account;
     
     public Transaction(){
@@ -35,19 +35,19 @@ public class Transaction {
         this.amount = amount;
     }
 
-    public void setAccountOfTransaction(int accountId, int customerId){
-        this.account = new Account(accountId, 0, customerId);
+    public void setAccount(Account account){
+        this.account = account;
     }
 
     public int getId(){
         return this.id;
     }
 
-    public int getAmountOfTransaction(){
+    public int getAmount(){
         return this.amount;
     }
 
-    public Account getAccountOfTransaction(){
+    public Account getAccount(){
         return this.account;
     }
 }

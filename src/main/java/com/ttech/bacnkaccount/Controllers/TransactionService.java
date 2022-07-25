@@ -16,6 +16,13 @@ public class TransactionService {
 
     public List<Transaction> showAllTransactions(){
         List<Transaction> transactions = new ArrayList<>();
+        for(Transaction t : transactionsTable.findAll())
+        {
+            System.out.println(t.getId());
+        }
+
+        System.out.println(transactionsTable.count());
+
         transactionsTable.findAll().forEach(transactions::add);
         return transactions;
     }

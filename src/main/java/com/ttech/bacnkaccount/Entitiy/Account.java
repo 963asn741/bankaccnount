@@ -20,7 +20,7 @@ public class Account {
     private List<Transaction> transactions;
 
     @ManyToOne
-    @JoinColumn(name = "customerId", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "customerId", referencedColumnName = "id")
     public Customer customer;
     
     public Account(){
@@ -46,10 +46,6 @@ public class Account {
 
     public int getBalance(){
         return this.balance;
-    }
-
-    public List<Transaction> getAllTransactions(){
-        return this.transactions;
     }
 
     public Customer getCustomerOfAccount(){

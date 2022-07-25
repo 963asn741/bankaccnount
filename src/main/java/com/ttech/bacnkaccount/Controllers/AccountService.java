@@ -41,5 +41,6 @@ public class AccountService{
 
     public void setOwner(Account account, Customer owner){
         account.setCustomer(owner);
+        AccountTable.save(account);
     }
 }

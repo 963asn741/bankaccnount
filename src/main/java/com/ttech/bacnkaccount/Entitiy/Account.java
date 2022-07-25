@@ -9,8 +9,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.ttech.bacnkaccount.Controllers.CustomerService;
-
 @Entity
 @Table(name = "Accounts")
 public class Account {

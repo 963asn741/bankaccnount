@@ -12,7 +12,6 @@ import javax.persistence.Table;
 public class Customer {
     @Id
     private int id;
-    private long customerId;
     private String name; 
 
     @OneToMany
@@ -22,18 +21,13 @@ public class Customer {
 
     }
 
-    public Customer(int id, long customerId, String name){
+    public Customer(int id, String name){
         this.id = id;
-        this.customerId = customerId;
         this.name = name;
     }
 
     public void setId(int id){
         this.id = id;
-    }
-
-    public void setCustomerId(long customerId){
-        this.customerId = customerId;
     }
 
     public void setName(String name){
@@ -44,11 +38,7 @@ public class Customer {
         return this.id;
     }
 
-    public long getCustomerId(){
-        return this.customerId;
-    }
-
-    public String getCustomerName(){
+    public String getName(){
         return this.name;
     }
 }

@@ -14,7 +14,6 @@ import javax.persistence.Table;
 public class Account {
     @Id
     private int id;
-    private long accountNumber;
     private int balance;
 
     @OneToMany
@@ -28,22 +27,24 @@ public class Account {
 
     }
 
-    public Account(int id, long accountNumber, int balance, List<Transaction> transactions){
+    public Account(int id, int balance, int customerId){
         this.id = id;
-        this.accountNumber = accountNumber;
+        this.balance = balance;
+        this.customer = new Customer(customerId, "");
+    }
+
+    public Account(int id, int balance, int customerId, List<Transaction> transactions){
+        this.id = id;
         this.balance = balance;
         this.transactions = transactions;
+        this.customer = new Customer(customerId, "");
     }
 
     public int getId(){
         return this.id;
     }
 
-    public long getAccountNumber(){
-        return this.accountNumber;
-    }
-
-    public int getAccoutnBalance(){
+    public int getAccountBalance(){
         return this.balance;
     }
 
@@ -51,19 +52,23 @@ public class Account {
         return this.transactions;
     }
 
+    public Customer getCustomerOfAccount(){
+        return this.customer;
+    }
+
     public void setAccountId(int id){
         this.id = id;
     }
 
-    public void setAccountNumber(long accountNumber){
-        this.accountNumber = accountNumber;
-    }
-
-    public void updateAccountBalance(int newBalance){
+    public void setAccountBalance(int newBalance){
         this.balance = newBalance;
     }
 
     public void setAccountTransactions(List<Transaction> transactions){
         this.transactions = transactions;
+    }
+
+    public void setCustomer(Customer customer){
+        this.customer = customer;
     }
 }

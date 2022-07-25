@@ -12,43 +12,42 @@ import javax.persistence.Table;
 public class Transaction {
     @Id
     private int id;
-    private long transactionId;
     private int amount;
     
     @ManyToOne
-    @JoinColumn(name = "transactionId", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "accountId", referencedColumnName = "id", insertable = false, updatable = false)
     public Account account;
     
     public Transaction(){
     }
 
-    public Transaction(int id, long transactionId, Account account, int amount){
+    public Transaction(int id, int amount, int accountID, int customerId){
         this.id = id;
-        this.transactionId = transactionId;
         this.amount = amount;
+        this.account = new Account(accountID, 0, customerId);
     }
 
     public void setId(int id){
         this.id = id;
     }
 
-    public void setTransactionId(long transactionId){
-        this.transactionId = transactionId;
-    }
-
     public void setAmount(int amount){
         this.amount = amount;
+    }
+
+    public void setAccountOfTransaction(int accountId, int customerId){
+        this.account = new Account(accountId, 0, customerId);
     }
 
     public int getId(){
         return this.id;
     }
 
-    public long getTransactionId(){
-        return this.transactionId;
-    }
-
     public int getAmountOfTransaction(){
         return this.amount;
+    }
+
+    public Account getAccountOfTransaction(){
+        return this.account;
     }
 }

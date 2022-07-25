@@ -20,6 +20,10 @@ public class TransactionService {
         return transactions;
     }
 
+    public Transaction getTransaction(int id){
+        return transactionsTable.findById(id).get();
+    }
+
     public void addTransaction(Transaction newTransaction){
         transactionsTable.save(newTransaction);
     }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ttech.bacnkaccount.Entitiy.Account;
+import com.ttech.bacnkaccount.Entitiy.Customer;
 
 @RestController
 public class AccountController {
@@ -17,18 +18,29 @@ public class AccountController {
     @Autowired
     private AccountService accountService;
 
-    @GetMapping("/get-accounts")
-    public List<Account> getAllCustomers(){
+    @Autowired
+    private CustomerService customerService;
+
+    @GetMapping("/accounts")
+    public List<Account> getAllExistingAccounts(){
         return accountService.getAllAccounts();
     }
 
-    @GetMapping("/get-accounts/{id}")
+    @GetMapping("/customers/{customerId}/accounts")
+    public List<Account> getAllAccountOfCustomer(@PathVariable int customerId){
+        return accountService.getAccountsByCustomerId(customerId);
+    }
+
+    @GetMapping("/customers/account/{id}")
     public Account getAccountDetails(@PathVariable int id){
         return accountService.getAccount(id);
     }
 
-    @PostMapping("/add-account")
-    public void addNewAccount(@RequestBody Account newAccount){
+    @PostMapping("/customers/{customerId}/add-account")
+    public void addNewAccount(@RequestBody Account newAccount, @PathVariable int customerId){
+        Customer owner = customerService.getCustomer(customerId);
+        System.out.println(owner.getName());
+        newAccount.setCustomer(owner);
         accountService.addAccount(newAccount);
     }
 }

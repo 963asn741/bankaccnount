@@ -20,6 +20,10 @@ public class AccountService{
         return accounts;
     }
 
+    public List<Account> getAccountsByCustomerId(int id){
+        return AccountTable.findByCustomerId(id);
+    }
+
     public Account getAccount(int id){
         return AccountTable.findById(id).get();
     }
@@ -28,8 +32,9 @@ public class AccountService{
         AccountTable.save(account);
     }       
 
-    public void updateAccountBalance(int id, int newAmount){
-        Account accountToUpdate = getAccount(id);
-        accountToUpdate.updateAccountBalance(newAmount);
+    public void updateAccountBalance(Account accountToUpdate, int newAmount){
+        int currentBalance = accountToUpdate.getAccountBalance();
+        currentBalance = currentBalance + newAmount;
+        accountToUpdate.setAccountBalance(currentBalance);
     }
 }

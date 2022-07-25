@@ -48,10 +48,6 @@ public class Account {
         return this.balance;
     }
 
-    public Customer getCustomerOfAccount(){
-        return this.customer;
-    }
-
     public void setAccountId(int id){
         this.id = id;
     }

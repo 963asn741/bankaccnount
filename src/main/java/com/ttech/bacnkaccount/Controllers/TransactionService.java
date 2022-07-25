@@ -27,6 +27,10 @@ public class TransactionService {
         return transactions;
     }
 
+    public List<Transaction> getTransactionsOfAccount(int accountId){
+        return transactionsTable.findByAccountId(accountId);
+    }
+
     public Transaction getTransaction(int id){
         return transactionsTable.findById(id).get();
     }

@@ -31,6 +31,12 @@ public class TransactionController {
         return transactionService.getTransaction(id);
     }
 
+    @GetMapping("/customers/{customerId}/{accountId}/transactions")
+    public List<Transaction> getAllTransactionsOfAccount(@PathVariable int customerId, @PathVariable int accountId){
+        return transactionService.getTransactionsOfAccount(accountId);
+    }
+
+
     @PostMapping("/customers/{customerId}/{accountId}/new-transaction")
     public void makeNewTransaction(@RequestBody Transaction newTransaction, @PathVariable int customerId, @PathVariable int accountId){
         Account accountOfTransaction = accountService.getAccount(accountId);

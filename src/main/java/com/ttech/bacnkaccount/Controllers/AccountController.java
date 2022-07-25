@@ -41,6 +41,8 @@ public class AccountController {
         Customer owner = customerService.getCustomer(customerId);
         System.out.println(owner.getName());
         accountService.setOwner(newAccount, owner);
+
+        System.out.println(newAccount.customer.getId());
         accountService.addAccount(newAccount);
     }
 }

@@ -34,6 +34,6 @@ public class TransactionController {
     public void makeNewTransaction(@RequestBody Transaction newTransaction, @PathVariable int customerId, @PathVariable int accountId){
         newTransaction.setAccountOfTransaction(accountId, customerId);
         transactionService.addTransaction(newTransaction);
-        accountService.updateAccountBalance(newTransaction.getAccountOfTransaction(),newTransaction.getAmountOfTransaction());
+        accountService.updateBalance(newTransaction.getAccountOfTransaction(),newTransaction.getAmountOfTransaction());
     }
 }

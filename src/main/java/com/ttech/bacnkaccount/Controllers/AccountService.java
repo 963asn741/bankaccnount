@@ -33,8 +33,8 @@ public class AccountService{
         AccountTable.save(account);
     }       
 
-    public void updateAccountBalance(Account accountToUpdate, int newAmount){
-        int currentBalance = accountToUpdate.getAccountBalance();
+    public void updateBalance(Account accountToUpdate, int newAmount){
+        int currentBalance = accountToUpdate.getBalance();
         currentBalance = currentBalance + newAmount;
         accountToUpdate.setAccountBalance(currentBalance);
     }

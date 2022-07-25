@@ -44,7 +44,7 @@ public class Account {
         return this.id;
     }
 
-    public int getAccountBalance(){
+    public int getBalance(){
         return this.balance;
     }
 

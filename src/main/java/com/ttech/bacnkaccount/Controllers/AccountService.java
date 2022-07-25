@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ttech.bacnkaccount.JPA.AccountRepo;
 import com.ttech.bacnkaccount.Entitiy.Account;
+import com.ttech.bacnkaccount.Entitiy.Customer;
 
 @Service
 public class AccountService{
@@ -36,5 +37,9 @@ public class AccountService{
         int currentBalance = accountToUpdate.getAccountBalance();
         currentBalance = currentBalance + newAmount;
         accountToUpdate.setAccountBalance(currentBalance);
+    }
+
+    public void setOwner(Account account, Customer owner){
+        account.setCustomer(owner);
     }
 }

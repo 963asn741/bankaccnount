@@ -40,7 +40,7 @@ public class AccountController {
     public void addNewAccount(@RequestBody Account newAccount, @PathVariable int customerId){
         Customer owner = customerService.getCustomer(customerId);
         System.out.println(owner.getName());
-        newAccount.setCustomer(owner);
+        accountService.setOwner(newAccount, owner);
         accountService.addAccount(newAccount);
     }
 }

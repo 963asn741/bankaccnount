@@ -31,7 +31,7 @@ public class AccountController {
         return accountService.getAccountsByCustomerId(customerId);
     }
 
-    @GetMapping("/customers/account/{id}")
+    @GetMapping("/customers/accounts/{id}")
     public Account getAccountDetails(@PathVariable int id){
         return accountService.getAccount(id);
     }

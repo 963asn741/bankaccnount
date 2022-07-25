@@ -23,7 +23,8 @@ public class AccountController {
 
     @GetMapping("/accounts")
     public List<Account> getAllExistingAccounts(){
-        return accountService.getAllAccounts();
+        return accountService
+        .getAllAccounts();
     }
 
     @GetMapping("/customers/{customerId}/accounts")

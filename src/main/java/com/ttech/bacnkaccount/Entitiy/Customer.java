@@ -14,7 +14,7 @@ public class Customer {
     private int id;
     private String name; 
 
-    @OneToMany
+    @OneToMany(mappedBy = "customer")
     private List<Account> accounts;
 
     public Customer(){

@@ -29,12 +29,12 @@ ROUTES TO DO STUFF:
 		"balance : 0"	
 	}
 
-	
+
 /customers/{customerId}/{accountId}/transactions : return all transactions of account with id=accountId [GET]
 
 /customers/{customerId}/{accountId}/transactions/{transactionId} : reutrns transaction with id=transactionId [GET]\
 
-/customers/{customerId}/{accountId}/new-transaction : adds a transaction to DB and updated account ablance value [POST]
+/customers/{customerId}/{accountId}/new-transaction : adds a transaction to DB and updates account balance value [POST]
 	{
 		"id" : 123456789
 		"amount" : 30000

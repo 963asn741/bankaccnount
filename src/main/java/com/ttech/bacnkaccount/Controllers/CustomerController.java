@@ -31,6 +31,7 @@ public class CustomerController {
     @GetMapping("/customers/{id}")
     public String getCustomer(@PathVariable int id, Model model){
         model.addAttribute("listaccounts", accountService.getAccountsByCustomerId(id));
+        model.addAttribute("listaccountssize", accountService.getAccountsByCustomerId(id).size());
         model.addAttribute("customer", customerService.getCustomer(id));
         return "customerdetails";
     }

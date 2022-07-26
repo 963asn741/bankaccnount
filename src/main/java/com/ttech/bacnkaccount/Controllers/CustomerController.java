@@ -25,10 +25,6 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
-    @GetMapping("/customers")
-    public List<Customer> getEveryCustomer(){
-        return customerService.getAllCustomers();
-    }
 
     @GetMapping("/customers/{id}")
     public Customer getCustomer(@PathVariable int id){
@@ -36,19 +32,20 @@ public class CustomerController {
     }
 
     @GetMapping("/add-customer")
-    public String addCustomerPage(){
-        return "AddCustomer.html";
+    public String addCustomerPage(Model model){
+        model.addAttribute("customer", new Customer());
+        return "addcustomerpage";
     }
 
     @PostMapping("/customers/add-customer")
     public String addCustomerToTable(@ModelAttribute Customer newCustomer){
         customerService.addCustomer(newCustomer);
-        return "redirect:/customer/list";
+        return "redirect:/main-menu";
     }
 
-    @GetMapping("/customer/list")
+    @GetMapping("/customers")
     public String getList(Model model){
-        model.addAttribute("listcustomer",customerService.getAllCustomers());
+        model.addAttribute("listcustomer", customerService.getAllCustomers());
         return "list-of-customers";
     }
    

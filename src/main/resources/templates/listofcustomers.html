@@ -16,12 +16,14 @@
                     <tr>
                         <th class="text-center">Customer ID</th>
                         <th class="text-center">Customer Name</th>
+                        <th class="text-center">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="customer: ${listcustomers}">
                         <td th:text="${customer.id}"></td>
                         <td th:text="${customer.name}"></td>
+                        <td><a class="btn" th:href="@{/customers/{id}(id=${customer.id})}">View Details</a></td>
                     </tr>
                 </tbody>
             </table>

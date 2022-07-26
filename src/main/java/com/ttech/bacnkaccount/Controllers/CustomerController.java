@@ -18,6 +18,9 @@ public class CustomerController {
 
     @Autowired
     private CustomerService customerService;
+
+    @Autowired
+    private AccountService accountService;
     
     @GetMapping("/customers")
     public String getList(Model model){
@@ -26,8 +29,10 @@ public class CustomerController {
     }
 
     @GetMapping("/customers/{id}")
-    public Customer getCustomer(@PathVariable int id){
-        return customerService.getCustomer(id);
+    public String getCustomer(@PathVariable int id, Model model){
+        model.addAttribute("listaccounts", accountService.getAccountsByCustomerId(id));
+        model.addAttribute("customer", customerService.getCustomer(id));
+        return "customerdetails";
     }
 
     @GetMapping("/add-customer")
@@ -41,4 +46,7 @@ public class CustomerController {
         customerService.addCustomer(newCustomer);
         return "redirect:/main-menu";
     }
+
+
+    
 }

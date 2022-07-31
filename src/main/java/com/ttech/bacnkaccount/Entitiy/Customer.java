@@ -14,8 +14,8 @@ import javax.persistence.Table;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String name; 
+    public int id;
+    public String name; 
 
     @OneToMany(mappedBy = "customer")
     private List<Account> accounts;

@@ -3,16 +3,18 @@ package com.ttech.bacnkaccount.Controllers;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.ttech.bacnkaccount.Entitiy.Account;
+import com.ttech.bacnkaccount.Entitiy.Customer;
 import com.ttech.bacnkaccount.Entitiy.Transaction;
 
-@RestController
+@Controller
 public class TransactionController {
 
     @Autowired
@@ -21,14 +23,26 @@ public class TransactionController {
     @Autowired
     private AccountService accountService;
 
-    @GetMapping("/transactions")
-    public List<Transaction> getAllTransaction(){
-        return transactionService.showAllTransactions();
+    @Autowired
+    private CustomerService customerService;
+
+    @GetMapping("/add-transaction")
+    public String addCustomerPage(Model model){
+        model.addAttribute("transaction", new Transaction());
+        model.addAttribute("accountlist", accountService.getAllAccounts());
+        System.out.println(accountService.getAllAccounts().size());
+        return "addtransactionspage";
     }
 
-    @GetMapping("/customers/{customerId}/{accountId}/transactions/{id}")
-    public Transaction getTransaction(@PathVariable int id){
-        return transactionService.getTransaction(id);
+    @GetMapping("/customers/{accountId}/transactions/{id}")
+    public String getAccountDetails(Model model, @PathVariable int accountId, @PathVariable int id){
+        Account account = accountService.getAccount(accountId);
+        Customer customer = customerService.getCustomer(account.getCustomerId());
+        Transaction transaction = transactionService.getTransaction(id);
+        model.addAttribute("account", account);
+        model.addAttribute("customer", customer);
+        model.addAttribute("transaction", transaction);
+        return "transactiondetails";
     }
 
     @GetMapping("/customers/{customerId}/{accountId}/transactions")
@@ -36,14 +50,12 @@ public class TransactionController {
         return transactionService.getTransactionsOfAccount(accountId);
     }
 
-
-    @PostMapping("/customers/{customerId}/{accountId}/new-transaction")
-    public void makeNewTransaction(@RequestBody Transaction newTransaction, @PathVariable int customerId, @PathVariable int accountId){
-        Account accountOfTransaction = accountService.getAccount(accountId);
+    @PostMapping("/customers/add-transaction")
+    public String addCustomerToTable(@ModelAttribute Transaction newTransaction){
+        Account accountOfTransaction = accountService.getAccount(newTransaction.getAccountId());
         newTransaction.setAccount(accountOfTransaction);
-        System.out.println(newTransaction.getAccount().getId());
         accountService.updateBalance(newTransaction.getAccount(),newTransaction.getAmount());
-        transactionService.addTransaction(newTransaction);
-
+        transactionService.addTransaction(newTransaction);        
+        return "redirect:/main-menu";
     }
 }

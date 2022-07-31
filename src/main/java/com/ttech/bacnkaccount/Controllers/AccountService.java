@@ -36,7 +36,7 @@ public class AccountService{
     public void updateBalance(Account accountToUpdate, int newAmount){
         int currentBalance = accountToUpdate.getBalance();
         currentBalance = currentBalance + newAmount;
-        accountToUpdate.setAccountBalance(currentBalance);
+        accountToUpdate.setBalance(currentBalance);
     }
 
     public void setOwner(Account account, Customer owner){

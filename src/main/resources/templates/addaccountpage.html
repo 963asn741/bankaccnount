@@ -1,38 +1,4 @@
-<!-- <!DOCTYPE html>
-<html>
-<head>
-<style>
-h1 {
-  color: blue;
-  font-family: verdana;
-  font-size: 300%;
-
-}
-p  {
-  color: red;
-  font-family: courier;
-  font-size: 160%;
-}
-</style>
-</head>
-<body>
-
-<h1>Add Customer</h1>
-
-<form th:action = "@(/customers/add-customer)" th:object="{customer}" method="post" >
-    <label for="id">Customer ID</label>
-    <input id="id" type="text" name="ID">
-    <label for="name">Name of the Customer</label>
-    <input type="text" name="Name" id="name">
-    <input type="submit" value="Add Customer">
-</form>
-
-</body>
-</html>
- -->
-
-
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -43,11 +9,20 @@ p  {
 <body>
 <div class="container">
     <h1>Add Account</h1>
-    <form class="form-horizontal text-center" th:action="@{/customers/add-customer}" method="POST" th:object="${account}">
+    <form class="form-horizontal text-center" th:action="@{/customers/add-account}" method="POST" th:object="${account}">
       <div class="form-group">
         <label class="control-label col-sm-2" for="accountBalance">Account Inital Balance :</label>
         <div class="col-sm-10">
           <input class="form-control" type="text" th:field="*{balance}" placeholder="amount">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="customerId">Select Customer :</label>
+        <div class="col-sm-10">
+          <select class="form-control" th:field="*{customerId}">
+            <option th:each="customer: ${customerlist}" th:value="${customer.id}" th:text="${customer.name}">
+            </option>
+        </select>
         </div>
       </div>
       <button class="btn btn-default" type="submit">Add Account</button>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Transaction Details</title>
+<link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="container text-center">
+<h1>Details of Transaction</h1>
+<br>
+<div class="container-fluid">
+    <div class="text-justify">
+        <span class="row" th:text="'Transaction ID : '+${transaction.id}"></span>
+        <br>
+        <span class="row" th:text="'Amount : '+${transaction.amount}"></span>
+        <br>
+        <span class="row" th:text="'Account ID : '+${account.id}"></span>
+        <br>
+        <span class="row" th:text="'Account Holder : '+${customer.name}"></span>
+    </div>
+</div>
+</div>
+
+</body>
+</html>

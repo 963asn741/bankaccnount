@@ -2,8 +2,6 @@ package com.ttech.bacnkaccount.Controllers;
 
 import com.ttech.bacnkaccount.Entitiy.Customer;
 
-import java.util.*;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,6 +31,7 @@ public class CustomerController {
         model.addAttribute("listaccounts", accountService.getAccountsByCustomerId(id));
         model.addAttribute("listaccountssize", accountService.getAccountsByCustomerId(id).size());
         model.addAttribute("customer", customerService.getCustomer(id));
+        model.addAttribute("condition", accountService.getAccountsByCustomerId(id).size()==0);
         return "customerdetails";
     }
 
@@ -47,7 +46,4 @@ public class CustomerController {
         customerService.addCustomer(newCustomer);
         return "redirect:/main-menu";
     }
-
-
-    
 }

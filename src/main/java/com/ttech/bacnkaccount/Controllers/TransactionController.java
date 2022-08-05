@@ -1,6 +1,6 @@
 package com.ttech.bacnkaccount.Controllers;
 
-import java.util.*;
+import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,9 +13,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.ttech.bacnkaccount.Entitiy.Account;
 import com.ttech.bacnkaccount.Entitiy.Customer;
 import com.ttech.bacnkaccount.Entitiy.Transaction;
+import com.ttech.bacnkaccount.Entitiy.User;
+import com.ttech.bacnkaccount.JPA.UserRepo;
 
 @Controller
 public class TransactionController {
+
+    @Autowired
+    UserRepo userRepo;
 
     @Autowired
     private TransactionService transactionService;
@@ -27,9 +32,10 @@ public class TransactionController {
     private CustomerService customerService;
 
     @GetMapping("/customers/add-transaction")
-    public String addCustomerPage(Model model){
+    public String addCustomerPage(Model model, Principal principal){
+        User currentUser = userRepo.findUserByUsername(principal.getName());
         model.addAttribute("transaction", new Transaction());
-        model.addAttribute("accountlist", accountService.getAllAccounts());
+        model.addAttribute("accountlist", accountService.getAccountsByCustomerId(currentUser.getCustomer().getId()));
         System.out.println(accountService.getAllAccounts().size());
         return "addtransactionspage";
     }
@@ -43,11 +49,6 @@ public class TransactionController {
         model.addAttribute("customer", customer);
         model.addAttribute("transaction", transaction);
         return "transactiondetails";
-    }
-
-    @GetMapping("/customers/{customerId}/{accountId}/transactions")
-    public List<Transaction> getAllTransactionsOfAccount(@PathVariable int customerId, @PathVariable int accountId){
-        return transactionService.getTransactionsOfAccount(accountId);
     }
 
     @PostMapping("/customers/add-transaction-post")

@@ -9,7 +9,7 @@
 <body>
 <div class="container">
     <h1>Add Account</h1>
-    <form class="form-horizontal text-center" th:action="@{/customers/add-account}" method="POST" th:object="${account}">
+    <form class="form-horizontal text-center" th:action="@{/admin/add-account-post}" method="POST" th:object="${account}">
       <div class="form-group">
         <label class="control-label col-sm-2" for="accountBalance">Account Inital Balance :</label>
         <div class="col-sm-10">

@@ -16,27 +16,8 @@ public class MainController {
     @Autowired
     public AdminService adminService;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/login")
-    public String loginPage() {
-        return "login.html";
-    }
-
-    @GetMapping("/main-menu")
+    @GetMapping("/")
     public String getMainMenu(){
         return "mainmenu";
-    }
-
-    @RequestMapping(method = RequestMethod.POST, value = "/login")
-    public String doLogin(@ModelAttribute(name = "adminform") Admin admin, Model m) {
-        System.out.println(admin.getUsername());
-        String uname = admin.getUsername();
-        String pass = admin.getPassword();
-        System.out.print(admin.getPassword());
-
-        if (uname.equals(adminService.username()) && pass.equals(adminService.password())) {
-            return "index";
-        }
-        m.addAttribute("error", "Incorrect Username & Password");
-        return "login";
     }
 }

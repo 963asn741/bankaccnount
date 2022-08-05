@@ -7,20 +7,30 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+ 
 
 @Entity
 @Table(name = "Customers")
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     public int id;
     public String name; 
+
+    @OneToOne(mappedBy = "customer")
+    private User user;
 
     @OneToMany(mappedBy = "customer")
     private List<Account> accounts;
 
     public Customer(){
+    }
+
+    public Customer(String name){
+        this.name = name;
     }
 
     public Customer(int id, String name){

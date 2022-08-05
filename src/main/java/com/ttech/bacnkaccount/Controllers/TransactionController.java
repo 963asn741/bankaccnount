@@ -26,7 +26,7 @@ public class TransactionController {
     @Autowired
     private CustomerService customerService;
 
-    @GetMapping("/add-transaction")
+    @GetMapping("/customers/add-transaction")
     public String addCustomerPage(Model model){
         model.addAttribute("transaction", new Transaction());
         model.addAttribute("accountlist", accountService.getAllAccounts());
@@ -50,12 +50,12 @@ public class TransactionController {
         return transactionService.getTransactionsOfAccount(accountId);
     }
 
-    @PostMapping("/customers/add-transaction")
+    @PostMapping("/customers/add-transaction-post")
     public String addCustomerToTable(@ModelAttribute Transaction newTransaction){
         Account accountOfTransaction = accountService.getAccount(newTransaction.getAccountId());
         newTransaction.setAccount(accountOfTransaction);
         accountService.updateBalance(newTransaction.getAccount(),newTransaction.getAmount());
         transactionService.addTransaction(newTransaction);        
-        return "redirect:/main-menu";
+        return "redirect:/";
     }
 }

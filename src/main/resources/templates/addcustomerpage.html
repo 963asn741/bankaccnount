@@ -43,12 +43,31 @@ p  {
 <body>
 <div class="container">
     <h1>Add Customer</h1>
-    <form class="form-horizontal text-center" th:action="@{/customers/add-customer}" method="POST" th:object="${customer}">
+    <form class="form-horizontal text-center" th:action="@{/admin/add-customer-post}" method="POST" th:object="${user}">
       <div class="form-group">
         <label class="control-label col-sm-2" for="name">Customer Name :</label>
         <div class="col-sm-10">
           <input class="form-control" type="text" th:field="*{name}" placeholder="customer name">
         </div>
+        <label class="control-label col-sm-2" for="name">Username :</label>
+        <div class="col-sm-10">
+          <input class="form-control" type="text" th:field="*{username}" placeholder="username">
+        </div>
+        <label class="control-label col-sm-2" for="name">Password :</label>
+        <div class="col-sm-10">
+          <input class="form-control" type="text" th:field="*{password}" placeholder="password">
+        </div>
+        <label class="control-label col-sm-2" for="name">Role :</label>
+        <div class="col-sm-10">
+          <input class="form-control" type="text" th:field="*{roles}" placeholder="roles">
+        </div>
+
+
+
+
+
+
+
       </div>
       <button class="btn btn-default" type="submit">Add Customer</button>
       </div>

@@ -1,12 +1,13 @@
 package com.ttech.bacnkaccount.JPA;
 
-import org.springframework.data.repository.CrudRepository;
+import java.util.Optional;
 
-import com.ttech.bacnkaccount.Entitiy.User;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepo extends CrudRepository<User, Integer>{
+import com.ttech.bacnkaccount.Entitiy.*;;
 
-    public User getUserByUsername(String username);
-    
-    
+public interface UserRepo extends JpaRepository<User, Integer>{
+    Optional<User> findByUsername(String username);
+
+    User findUserByUsername(String username);
 }

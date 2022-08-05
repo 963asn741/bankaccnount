@@ -1,6 +1,10 @@
 package com.ttech.bacnkaccount.Controllers;
 
 import com.ttech.bacnkaccount.Entitiy.Customer;
+import com.ttech.bacnkaccount.Entitiy.User;
+import com.ttech.bacnkaccount.JPA.UserRepo;
+
+import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,12 +19,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class CustomerController {
 
     @Autowired
+    MyUserDetailsService userDetailsService;
+
+    @Autowired
+    UserRepo userRepo;
+
+    @Autowired
     private CustomerService customerService;
 
     @Autowired
     private AccountService accountService;
     
-    @GetMapping("/customers")
+    @GetMapping("/admin/customers")
     public String getList(Model model){
         model.addAttribute("listcustomers", customerService.getAllCustomers());
         return "listofcustomers";
@@ -35,15 +45,35 @@ public class CustomerController {
         return "customerdetails";
     }
 
-    @GetMapping("/add-customer")
+    @GetMapping("/customers/profile")
+    public String getProfile(Model model, Principal principal){
+        User currentUser = userRepo.findUserByUsername(principal.getName());
+        int id = currentUser.getCustomer().getId();
+        model.addAttribute("listaccounts", accountService.getAccountsByCustomerId(id));
+        model.addAttribute("listaccountssize", accountService.getAccountsByCustomerId(id).size());
+        model.addAttribute("customer", customerService.getCustomer(id));
+        model.addAttribute("condition", accountService.getAccountsByCustomerId(id).size()==0);
+        return "customerdetails";
+    }
+
+    @GetMapping("/admin/add-customer")
     public String addCustomerPage(Model model){
-        model.addAttribute("customer", new Customer());
+//TO DO: ADD USER MODEL INSTEAD OF CUSTOMER, ADD NAME FIELD TO USER ENTITY
+
+        model.addAttribute("user", new User());
         return "addcustomerpage";
     }
 
-    @PostMapping("/customers/add-customer")
-    public String addCustomerToTable(@ModelAttribute Customer newCustomer){
+    @PostMapping("/admin/add-customer-post")
+    public String addCustomerToTable(@ModelAttribute User newUser){
+
+        // get model attriture of user instead of customer and save both customer and user into thier repos
+        Customer newCustomer = new Customer(newUser.getName());
         customerService.addCustomer(newCustomer);
-        return "redirect:/main-menu";
+        newUser.setActive(true);
+        newUser.setCustomer(newCustomer);
+        newUser.setRoles("ROLE_USER");
+        userRepo.save(newUser);
+        return "redirect:/";
     }
 }

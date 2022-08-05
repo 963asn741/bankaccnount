@@ -1,5 +1,6 @@
 package com.ttech.bacnkaccount.Controllers;
 
+import java.security.Principal;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,15 +26,10 @@ public class AccountController {
     @Autowired
     private CustomerService customerService;
 
-    @GetMapping("/accounts")
+    @GetMapping("/admin/accounts")
     public String getAllExistingAccounts(Model model){
         model.addAttribute("listaccounts", accountService.getAllAccounts());
         return "listofaccountpage";
-    }
-
-    @GetMapping("/customers/{customerId}/accounts")
-    public List<Account> getAllAccountOfCustomer(@PathVariable int customerId){
-        return accountService.getAccountsByCustomerId(customerId);
     }
 
     @GetMapping("/customers/accounts/{id}")
@@ -50,7 +46,7 @@ public class AccountController {
         return "accountdetails";
     }
 
-    @GetMapping("/add-account")
+    @GetMapping("/admin/add-account")
     public String addCustomerPage(Model model){
         model.addAttribute("account", new Account());
         model.addAttribute("customerlist", customerService.getAllCustomers());
@@ -58,13 +54,13 @@ public class AccountController {
         return "addaccountpage";
     }
 
-    @PostMapping("/customers/add-account")
+    @PostMapping("/admin/add-account-post")
     public String addNewAccount(@ModelAttribute Account newAccount){
         System.out.println("CUSTMER ID ="+newAccount.getCustomerId());
         Customer owner = customerService.getCustomer(newAccount.getCustomerId());
         System.out.println(owner.getName());
         accountService.setOwner(newAccount, owner);
         accountService.addAccount(newAccount);
-        return "redirect:/main-menu";
+        return "redirect:/";
     }
 }

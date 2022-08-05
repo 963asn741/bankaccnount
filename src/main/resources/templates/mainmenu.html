@@ -2,13 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <title>Main Menu</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
 </head>
 <body>
 
-<div style="align-items:flex-end;">
+<div class = "navbar-right">
   <a th:href="@{/logout}">
-  <button>Logout</button>
+  <button class="navbar-btn">Logout</button>
 </a>
 </div>
 

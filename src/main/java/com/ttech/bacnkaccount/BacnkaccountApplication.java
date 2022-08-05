@@ -48,5 +48,4 @@ public class BacnkaccountApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BacnkaccountApplication.class, args);
 	}
-
 }

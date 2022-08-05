@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @Table(name = "Customers")
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int id;
     public String name; 
 

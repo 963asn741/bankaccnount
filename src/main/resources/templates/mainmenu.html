@@ -1,56 +1,56 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
 <head>
-<title>Main Menu</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+  <title>Main Menu</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 </head>
+
 <body>
 
 
-<div class="container text-center pt-5 bg-light">
+  <div class="container text-center m-5 bg-light">
 
-  <div class = "navbar-right">
-    <a th:href="@{/logout}">
-    <button class="navbar-btn">Logout</button>
-  </a>
+    <div class="navbar-right p-5">
+      <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Logout">
+      </form>
+    </div>
+    <h1>Choose one of the following actions</h1>
+    <br>
+
+    <style>
+      div.row-fluid {
+        height: 50px;
+      }
+    </style>
+
+    <div>
+      <ul class="nav nav-pills nav-stacked">
+        <div class="row-fluid" sec:authorize="hasRole('ROLE_ADMIN')">
+          <li><a class="btn" th:href="@{/admin/add-customer}">Add a Customer</a></li>
+        </div>
+        <div class="row-fluid" sec:authorize="hasRole('ROLE_ADMIN')">
+          <li><a class="btn" th:href="@{/admin/customers}">View Customers</a></li>
+        </div>
+        <div class="row-fluid" sec:authorize="hasRole('ROLE_ADMIN')">
+          <li><a class="btn" th:href="@{/admin/add-account}">Add Account</a></li>
+        </div>
+        <div class="row-fluid" sec:authorize="hasRole('ROLE_ADMIN')">
+          <li><a class="btn" th:href="@{/admin/accounts}">View Accounts</a></li>
+        </div>
+        <div class="row-fluid" sec:authorize="hasRole('ROLE_USER')">
+          <li><a class="btn" th:href="@{/customers/profile}">View Profile Details</a></li>
+        </div>
+        <div class="row-fluid" sec:authorize="hasRole('ROLE_USER')">
+          <li><a class="btn" th:href="@{customers/add-transaction}">Make a Transaction</a></li>
+        </div>
+      </ul>
+    </div>
   </div>
-<h1>Choose one of the following actions</h1>
-<br>
-
-<style>
-
-div.row-fluid {
-  height: 50px;
-}
-
-</style>
-
-<div>
-    <ul class="nav nav-pills nav-stacked">
-      <div class="row-fluid" sec:authorize="hasRole('ROLE_ADMIN')">
-        <li><a class="btn" th:href="@{/admin/add-customer}">Add a Customer</a></li>
-      </div>
-      <div class="row-fluid" sec:authorize="hasRole('ROLE_ADMIN')">
-        <li><a class="btn" th:href="@{/admin/customers}">View Customers</a></li>
-      </div>
-      <div class="row-fluid" sec:authorize="hasRole('ROLE_ADMIN')">
-        <li><a class="btn" th:href="@{/admin/add-account}">Add Account</a></li>
-      </div>
-      <div class="row-fluid" sec:authorize="hasRole('ROLE_ADMIN')">
-        <li><a class="btn" th:href="@{/admin/accounts}">View Accounts</a></li>
-      </div>
-      <div class="row-fluid" sec:authorize="hasRole('ROLE_USER')">
-        <li><a class="btn" th:href="@{/customers/profile}">View Profile Details</a></li>
-      </div>
-      <div class="row-fluid" sec:authorize="hasRole('ROLE_USER')">
-        <li><a class="btn" th:href="@{customers/add-transaction}">Make a Transaction</a></li>
-      </div>
-    </ul>
-</div>
-</div>
 
 </body>
-</html>
 
+</html>

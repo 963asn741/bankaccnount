@@ -10,4 +10,9 @@ public class MainController {
     public String getMainMenu(){
         return "mainmenu";
     }
+
+    @GetMapping("/login")
+    public String loginPage(){
+        return "login";
+    }
 }

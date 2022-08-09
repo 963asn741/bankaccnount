@@ -36,9 +36,6 @@ public class AccountController {
     public String getAccountDetails(Model model, @PathVariable int id){
         Account account = accountService.getAccount(id);
         Customer customer = customerService.getCustomer(account.getCustomerId());
-        System.out.println("REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
-        System.out.println(account.getCustomerId());
-        System.out.println("REEETTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
         model.addAttribute("account", account);
         model.addAttribute("customer", customer);
         model.addAttribute("transactionlist", transactionService.getTransactionsOfAccount(id));
@@ -56,9 +53,7 @@ public class AccountController {
 
     @PostMapping("/admin/add-account-post")
     public String addNewAccount(@ModelAttribute Account newAccount){
-        System.out.println("CUSTMER ID ="+newAccount.getCustomerId());
         Customer owner = customerService.getCustomer(newAccount.getCustomerId());
-        System.out.println(owner.getName());
         accountService.setOwner(newAccount, owner);
         accountService.addAccount(newAccount);
         return "redirect:/";

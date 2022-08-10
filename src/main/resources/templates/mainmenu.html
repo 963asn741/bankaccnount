@@ -5,15 +5,24 @@
   <title>Main Menu</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 </head>
 
 <body>
+  <style>
+    div.row-fluid {
+      height: 50px;
+    }
+
+    div.gap-top {
+      padding-top: 5%;
+    }
+  </style>
 
 
   <div class="container text-center m-5 bg-light">
 
-    <div class="navbar-right p-5">
+    <div class="gap-top navbar-right">
       <form th:action="@{/logout}" method="post">
         <input type="submit" value="Logout">
       </form>
@@ -21,11 +30,7 @@
     <h1>Choose one of the following actions</h1>
     <br>
 
-    <style>
-      div.row-fluid {
-        height: 50px;
-      }
-    </style>
+   
 
     <div>
       <ul class="nav nav-pills nav-stacked">

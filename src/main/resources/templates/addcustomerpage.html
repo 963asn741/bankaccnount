@@ -22,6 +22,11 @@
     </div>
     <br>
     <form class="form-horizontal text-center" th:action="@{/admin/add-customer-post}" method="POST" th:object="${user}">
+      <div th:if="${param.badusername}">
+        <div class="alert alert-danger">
+          Username already exists! Try a different one
+        </div>
+      </div>  
       <div class="form-group">
         <label class="control-label col-sm-2" for="name">Customer Name :</label>
         <div class="col-sm-10">

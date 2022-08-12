@@ -13,10 +13,9 @@
 
 <style>
 .css-selector {
-    background: linear-gradient(270deg, #ff6f00, #008fff);
+    background: linear-gradient(225deg, #ff6f00, #008fff);
     background-size: 400% 400%;
-
-    animation: AnimationName 13s ease infinite;
+    animation: AnimationName 5s ease infinite;
 }
 
 @keyframes AnimationName {
@@ -28,8 +27,7 @@
 
 <body class="container css-selector">
   <h1 class="py-5 text-light">Login</h1>
-  <p th:if="${loginError}" class="error"></p>
-  <form class="col card p-3 mb-5" method="POST" th:action="@{/login}">
+    <form class="col card p-3 mb-5" method="POST" th:action="@{/login}">
     <div th:if="${param.error}">
       <div class="alert alert-danger">
         Invalid Credentials

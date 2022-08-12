@@ -58,8 +58,6 @@ public class CustomerController {
 
     @GetMapping("/admin/add-customer")
     public String addCustomerPage(Model model) {
-        // TO DO: ADD USER MODEL INSTEAD OF CUSTOMER, ADD NAME FIELD TO USER ENTITY
-
         model.addAttribute("user", new User());
         return "addcustomerpage";
     }

@@ -64,7 +64,10 @@ public class CustomerController {
 
     @PostMapping("/admin/add-customer-post")
     public String addCustomerToTable(@ModelAttribute User newUser) {
-        if (userRepo.findByUsername(newUser.getUsername()).equals(Optional.empty())) {
+        if (!userRepo.findByUsername(newUser.getUsername()).equals(Optional.empty())) return "redirect:/admin/add-customer?badusername";
+        else if(newUser.getUsername().equals("")) return "redirect:/admin/add-customer?emptyusername";
+        else if(newUser.getPassword().equals("")) return "redirect:/admin/add-customer?emptypassword";
+        else{
             Customer newCustomer = new Customer(newUser.getName());
             customerService.addCustomer(newCustomer);
             newUser.setActive(true);
@@ -73,6 +76,5 @@ public class CustomerController {
             userRepo.save(newUser);
             return "redirect:/";
         }
-        else return "redirect:/admin/add-customer?badusername";
     }
 }

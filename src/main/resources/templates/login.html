@@ -12,7 +12,7 @@
 </head>
 
 <style>
-.css-selector {
+.gradient-bg {
     background: linear-gradient(225deg, #ff6f00, #008fff);
     background-size: 400% 400%;
     animation: AnimationName 5s ease infinite;
@@ -25,7 +25,7 @@
 }
 </style>
 
-<body class="container css-selector">
+<body class="container gradient-bg">
   <h1 class="py-5 text-light">Login</h1>
     <form class="col card p-3 mb-5" method="POST" th:action="@{/login}">
     <div th:if="${param.error}">

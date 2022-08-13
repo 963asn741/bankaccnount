@@ -34,26 +34,26 @@
     </div>
     <br>
     <div>
-      <ul class="nav nav-pills nav-stacked">
+      <div class="btn-group-vertical">
         <div class="row-fluid" sec:authorize="hasRole('ROLE_ADMIN')">
-          <li><a class="btn" th:href="@{/admin/add-customer}">Add a Customer</a></li>
+          <a class="btn btn-block" th:href="@{/admin/add-customer}">Add a Customer</a>
         </div>
         <div class="row-fluid" sec:authorize="hasRole('ROLE_ADMIN')">
-          <li><a class="btn" th:href="@{/admin/customers}">View Customers</a></li>
+          <a class="btn btn-block" th:href="@{/admin/customers}">View Customers</a>
         </div>
         <div class="row-fluid" sec:authorize="hasRole('ROLE_ADMIN')">
-          <li><a class="btn" th:href="@{/admin/add-account}">Add Account</a></li>
+          <a class="btn btn-block" th:href="@{/admin/add-account}">Add Account</a>
         </div>
         <div class="row-fluid" sec:authorize="hasRole('ROLE_ADMIN')">
-          <li><a class="btn" th:href="@{/admin/accounts}">View Accounts</a></li>
+          <a class="btn btn-block" th:href="@{/admin/accounts}">View Accounts</a>
         </div>
         <div class="row-fluid" sec:authorize="hasRole('ROLE_USER')">
-          <li><a class="btn" th:href="@{/customers/profile}">View Profile Details</a></li>
+          <a class="btn btn-block" th:href="@{/customers/profile}">View Profile Details</a>
         </div>
         <div class="row-fluid" sec:authorize="hasRole('ROLE_USER')">
-          <li><a class="btn" th:href="@{customers/add-transaction}">Make a Transaction</a></li>
+          <a class="btn btn-block" th:href="@{customers/add-transaction}">Make a Transaction</a>
         </div>
-      </ul>
+      </div>
     </div>
   </div>
 

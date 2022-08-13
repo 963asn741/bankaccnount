@@ -36,7 +36,6 @@ public class TransactionController {
         User currentUser = userRepo.findUserByUsername(principal.getName());
         model.addAttribute("transaction", new Transaction());
         model.addAttribute("accountlist", accountService.getAccountsByCustomerId(currentUser.getCustomer().getId()));
-        System.out.println(accountService.getAllAccounts().size());
         return "addtransactionspage";
     }
 

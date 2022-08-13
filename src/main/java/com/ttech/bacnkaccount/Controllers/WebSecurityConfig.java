@@ -33,6 +33,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/admin/**").hasRole("ADMIN")
             .antMatchers("/").hasAnyRole("ADMIN", "USER")
             .antMatchers("/customers/add-transaction").hasRole("USER")
+            .and()
+            .exceptionHandling().accessDeniedPage("/access-denied")
             .and().formLogin(form -> form
                 .defaultSuccessUrl("/")
                 .loginPage("/login")

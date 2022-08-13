@@ -44,7 +44,6 @@ public class AccountController {
     public String addCustomerPage(Model model){
         model.addAttribute("account", new Account());
         model.addAttribute("customerlist", customerService.getAllCustomers());
-        for(Customer c : customerService.getAllCustomers()) System.out.println(c.getName());
         return "addaccountpage";
     }
 

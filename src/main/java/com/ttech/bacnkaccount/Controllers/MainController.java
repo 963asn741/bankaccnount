@@ -15,4 +15,9 @@ public class MainController {
     public String loginPage(){
         return "login";
     }
+
+    @GetMapping("/access-denied")
+    public String forbidden(){
+        return "access-denied";
+    }
 }
